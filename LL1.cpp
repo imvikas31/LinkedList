@@ -16,32 +16,41 @@ class Node{
         this->next = NULL;
     }
 };
-
-void addfirst(Node* &head , int data){
+//addFirst --->>
+void addfirst(Node* &head , Node * &tail , int data){
     //create newnode
     Node* newnode = new Node(data);
-    if (head == NULL)
+    if (head == NULL)   //empty LL
     {
-        head = newnode;
+        head = tail= newnode;
         return;
     }
     newnode->next = head;
     head = newnode;
 }
 
-// void addlast(Node* &head,int data){
-//     //create newNode
-//     Node* newnode = new Node(data);
-//     while (head != NULL)
-//     {
-//        head = head->next;
-//     }
-//     head->next = newnode;
-//     newnode->next = NULL;
-    
-// }
 
+//addLast --->>
+void addlast(Node* &head, Node* &tail,int data){
+    //create newNode
+   
+    // Node* temp = head;
+    // while (temp->next != NULL)
+    // {   
+    //     temp = temp->next;
+    // } 
+    // tail = temp;
 
+    Node* newnode = new Node(data);
+    if (head == NULL)
+    {
+        head = tail = newnode;
+    }
+    tail->next = newnode;
+    tail = newnode;
+}
+
+//printing LL --->>
 void printLL(Node* head){
     Node* temp = head;
     while (temp != NULL)
@@ -53,6 +62,7 @@ void printLL(Node* head){
     
 }
 
+// getting length of LL --->>
 int getLength(Node* head){
     Node* temp = head;
     int length = 0;
@@ -70,14 +80,23 @@ int main(){
 
     Node* head = NULL;
     Node* tail = NULL;
-    addfirst(head , 50);
-    addfirst(head , 40);
-    addfirst(head , 30);
-    addfirst(head , 20);
-    addfirst(head , 10);
 
-    // addlast(head,50);
+//addFirst
+    addfirst(head,tail ,50);
+    addfirst(head,tail ,40);
+    addfirst(head,tail ,30);
+    addfirst(head,tail ,20);
+    addfirst(head,tail ,10);
+
+//addLast --->>
+    addlast(head,tail,60);
+    addlast(head,tail,70);
+
+//PrintLL --->>  
     printLL(head);
-    cout << getLength(head) <<endl;
+
+//Print_Length_Of_LL --->>
+    cout <<"Length of LL is : "<< getLength(head) <<endl;
+
     return 0;
 }
